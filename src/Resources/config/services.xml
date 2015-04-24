@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+
+        <parameter key="ashleydawson.glide.manipulator_collection.class">AshleyDawson\GlideBundle\Manipulator\ManipulatorCollection</parameter>
+
+    </parameters>
+
+    <services>
+
+        <!-- Manipulator Collection -->
+
+        <service id="ashleydawson.glide.manipulator_collection" class="%ashleydawson.glide.manipulator_collection.class%" />
+
+        <!-- Manipulators -->
+
+        <service id="ashleydawson.glide.manipulator.orientation" class="League\Glide\Api\Manipulator\Orientation">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.rectangle" class="League\Glide\Api\Manipulator\Rectangle">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.size" class="League\Glide\Api\Manipulator\Size">
+            <argument>4000000</argument>
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.brightness" class="League\Glide\Api\Manipulator\Brightness">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.contrast" class="League\Glide\Api\Manipulator\Contrast">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.gamma" class="League\Glide\Api\Manipulator\Gamma">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.sharpen" class="League\Glide\Api\Manipulator\Sharpen">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.filter" class="League\Glide\Api\Manipulator\Filter">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.blur" class="League\Glide\Api\Manipulator\Blur">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.pixelate" class="League\Glide\Api\Manipulator\Pixelate">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.output" class="League\Glide\Api\Manipulator\Output">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+    </services>
+
+</container>

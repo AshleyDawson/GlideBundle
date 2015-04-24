@@ -1,0 +1,39 @@
+{
+  "name": "ashleydawson/glide-bundle",
+  "type": "symfony-bundle",
+  "description": "Glide image processing in a Symfony2 project",
+  "keywords": [
+    "glide",
+    "image",
+    "picture",
+    "http",
+    "processing",
+    "thumbnail",
+    "effects",
+    "resize",
+    "crop",
+    "sepia",
+    "black-and-white"
+  ],
+  "authors": [
+    {
+      "name": "Ashley Dawson",
+      "email": "ashley@ashleydawson.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "symfony/symfony": "~2.3",
+    "league/flysystem": "~1.0",
+    "league/glide": "0.3.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.2.6"
+  },
+  "autoload": {
+    "psr-4": { "AshleyDawson\\GlideBundle\\": "src" }
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
