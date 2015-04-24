@@ -8,7 +8,7 @@
 
         <parameter key="ashleydawson.glide.manipulator_collection.class">AshleyDawson\GlideBundle\Manipulator\ManipulatorCollection</parameter>
         <parameter key="ashleydawson.glide.image_manager.class">Intervention\Image\ImageManager</parameter>
-        <parameter key="ashleydawson.glide.api.class">League\Glide\Api\Api</parameter>
+        <parameter key="ashleydawson.glide.api.class">AshleyDawson\GlideBundle\Api\Api</parameter>
         <parameter key="ashleydawson.glide.server_factory.class">AshleyDawson\GlideBundle\Server\ServerFactory</parameter>
 
     </parameters>
@@ -30,7 +30,7 @@
         </service>
 
         <service id="ashleydawson.glide.manipulator.size" class="League\Glide\Api\Manipulator\Size">
-            <argument>4000000</argument>
+            <argument>%ashleydawson.glide.max_image_size%</argument>
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
@@ -70,7 +70,7 @@
 
         <service id="ashleydawson.glide.image_manager" class="%ashleydawson.glide.image_manager.class%">
             <argument type="collection">
-                <argument key="driver" type="string">gd</argument>
+                <argument key="driver" type="string">%ashleydawson.glide.image_manager_driver%</argument>
             </argument>
         </service>
 
@@ -78,14 +78,14 @@
 
         <service id="ashleydawson.glide.api" class="%ashleydawson.glide.api.class%">
             <argument type="service" id="ashleydawson.glide.image_manager" />
-            <argument type="expression">service('ashleydawson.glide.manipulator_collection').getManipulators()</argument> <!-- todo: wrap api service to accept manipulator collection instance -->
+            <argument type="service" id="ashleydawson.glide.manipulator_collection" />
         </service>
 
         <!-- Server Factory -->
 
         <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%">
             <argument type="service" id="ashleydawson.glide.api" />
-            <argument>false</argument>
+            <argument>%ashleydawson.glide.create_new_instance%</argument>
         </service>
 
     </services>
