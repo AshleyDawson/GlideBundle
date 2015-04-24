@@ -77,14 +77,14 @@
         <!-- API -->
 
         <service id="ashleydawson.glide.api" class="%ashleydawson.glide.api.class%">
-            <argument type="service">ashleydawson.glide.image_manager</argument>
+            <argument type="service" id="ashleydawson.glide.image_manager" />
             <argument type="expression">service('ashleydawson.glide.manipulator_collection').getManipulators()</argument> <!-- todo: wrap api service to accept manipulator collection instance -->
         </service>
 
         <!-- Server Factory -->
 
         <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%">
-            <argument type="service">ashleydawson.glide.api</argument>
+            <argument type="service" id="ashleydawson.glide.api" />
             <argument>false</argument>
         </service>
 
