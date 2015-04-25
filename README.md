@@ -14,8 +14,8 @@ modifying and storing images on [Flysystem](https://github.com/thephpleague/flys
 interface allowing you to embed images within your application. For example:
 
 ```html
-<!-- Embed a 300x200 version of a particular image -->
-<img src="/route/to/image/controller/my-image.jpg?w=300&h=200" />
+<!-- Embed version of a particular image, truncating the width to 300 pixels -->
+<img src="/route/to/image/controller/my-image.jpg?w=300" />
 ```
 
 For more information and a better explanation, please read the [official Glide docs](http://glide.thephpleague.com/).
