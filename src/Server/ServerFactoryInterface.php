@@ -12,11 +12,11 @@ use League\Flysystem\FilesystemInterface;
 interface ServerFactoryInterface
 {
     /**
-     * Get a Glide server with source and cache filesystems
+     * Create a Glide server with source and cache filesystems
      *
      * @param FilesystemInterface $source
      * @param FilesystemInterface $cache
-     * @return \League\Glide\Server
+     * @return \AshleyDawson\GlideBundle\Server\Server;
      */
-    public function getServer(FilesystemInterface $source, FilesystemInterface $cache);
+    public function create(FilesystemInterface $source, FilesystemInterface $cache);
 }

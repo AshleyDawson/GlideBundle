@@ -31,9 +31,6 @@ class AshleyDawsonGlideExtension extends Extension
         $container->setParameter('ashleydawson.glide.image_manager_driver',
             $config['image_manager_driver']);
 
-        $container->setParameter('ashleydawson.glide.create_new_server_instance',
-            $config['create_new_server_instance']);
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
     }

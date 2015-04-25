@@ -85,7 +85,6 @@
 
         <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%">
             <argument type="service" id="ashleydawson.glide.api" />
-            <argument>%ashleydawson.glide.create_new_server_instance%</argument>
         </service>
 
     </services>

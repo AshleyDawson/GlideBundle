@@ -18,12 +18,7 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @var ServerFactory
      */
-    private $_serverFactoryReference;
-
-    /**
-     * @var ServerFactory
-     */
-    private $_serverFactoryNewInstance;
+    private $_serverFactory;
 
     protected function setUp()
     {
@@ -45,48 +40,17 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $this->_serverFactoryReference = new ServerFactory($api, false);
-        $this->_serverFactoryNewInstance = new ServerFactory($api, true);
+        $this->_serverFactory = new ServerFactory($api);
     }
 
-    public function testReturnReference()
+    public function testCreateServer()
     {
         $source = $this->_getLocalFilesystem('/source');
         $cache = $this->_getLocalFilesystem('/cache');
 
-        $server = $this->_serverFactoryReference->getServer($source, $cache);
+        $server = $this->_serverFactory->create($source, $cache);
 
         $this->assertInstanceOf('League\Glide\Server', $server);
-
-        $newHash = spl_object_hash($server);
-
-        $server = $this->_serverFactoryReference->getServer($source, $cache);
-
-        $this->assertInstanceOf('League\Glide\Server', $server);
-
-        $refHash = spl_object_hash($server);
-
-        $this->assertEquals($newHash, $refHash);
-    }
-
-    public function testReturnNewInstance()
-    {
-        $source = $this->_getLocalFilesystem('/source');
-        $cache = $this->_getLocalFilesystem('/cache');
-
-        $server = $this->_serverFactoryNewInstance->getServer($source, $cache);
-
-        $this->assertInstanceOf('League\Glide\Server', $server);
-
-        $newHash = spl_object_hash($server);
-
-        $server = $this->_serverFactoryNewInstance->getServer($source, $cache);
-
-        $this->assertInstanceOf('League\Glide\Server', $server);
-
-        $refHash = spl_object_hash($server);
-
-        $this->assertNotEquals($newHash, $refHash);
     }
 
     private function _getLocalFilesystem($prefix = '')

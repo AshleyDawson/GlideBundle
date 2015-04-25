@@ -25,7 +25,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->integerNode('max_image_size')->defaultValue(4000000)->end()
                 ->scalarNode('image_manager_driver')->defaultValue('gd')->end()
-                ->booleanNode('create_new_server_instance')->defaultFalse()->end()
             ->end()
         ;
 
