@@ -67,12 +67,17 @@ class MyController extends Controller
      */
     public function showImageAction(Request $request)
     {
+        // Filesystems for source and cache
         $sourceFilesystem = new Filesystem(new Local('/path/to/source/dir'));
-        
         $cacheFilesystem = new Filesystem(new Local('/path/to/cache/dir'));
     
-        $glideServer = $this->get('ashleydawson.glide.server_factory')->create($sourceFilesystem, $cacheFilesystem);
+        // Create a Glide server
+        $glideServer = $this
+            ->get('ashleydawson.glide.server_factory')
+            ->create($sourceFilesystem, $cacheFilesystem)
+        ;
         
+        // Return the processed image response
         return $glideServer->getImageResponse($request->get('image_name'), $request);
     }
 }
