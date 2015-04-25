@@ -17,6 +17,18 @@ class Server extends GlideServer
     private $_cachePathFilter;
 
     /**
+     * Set cache path filter - allows modification of cache path relative
+     * to its self. For example:
+     *
+     * <code>
+     * use Symfony\Component\HttpFoundation\Request;
+     * use League\Flysystem\FilesystemInterface;
+     *
+     * $server->setCachePathFilter(function ($path, Request $request, FilesystemInterface $cache) {
+     *     return '/my/custom/path' . $path;
+     * });
+     * </code>
+     *
      * @param \Closure $cachePathFilter
      */
     public function setCachePathFilter(\Closure $cachePathFilter)
@@ -35,7 +47,7 @@ class Server extends GlideServer
 
         if ($this->_cachePathFilter instanceof \Closure) {
             $filter = $this->_cachePathFilter;
-            $path = $filter($path, $this->getCache());
+            $path = $filter($path, $request, $this->getCache());
         }
 
         if ($this->cachePathPrefix) {
