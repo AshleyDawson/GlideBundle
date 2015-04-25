@@ -73,7 +73,7 @@ class MyController extends Controller
     
         $glideServer = $this->get('ashleydawson.glide.server_factory')->create($sourceFilesystem, $cacheFilesystem);
         
-        return $glideServer->getImageResponse($request->request->get('image_name'), $request);
+        return $glideServer->getImageResponse($request->get('image_name'), $request);
     }
 }
 ```
@@ -109,8 +109,10 @@ class MyAwesomeManipulator implements ManipulatorInterface
      */
     public function run(Request $request, Image $image)
     {
-        // Do something awesome to the image here...
-        
+        if ($request->has('awesome')) {
+            // Do something awesome to the image here...    
+        }
+    
         return $image;
     }
 }
@@ -139,4 +141,10 @@ Or, in XML:
             <tag name="ashleydawson.glide.manipulators" />
         </service>
     </services>
+```
+
+Ok, now we can use this manipulator on an image:
+
+```html
+<img src="/route/to/image/controller/my-image.jpg?awesome=foo" />
 ```
