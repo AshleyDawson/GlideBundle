@@ -136,11 +136,11 @@ services:
 Or, in XML:
 
 ```xml
-    <services>
-        <service id="acme.glide.manipulator.my_awesome_manipulator" class="Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator">
-            <tag name="ashleydawson.glide.manipulators" />
-        </service>
-    </services>
+<services>
+    <service id="acme.glide.manipulator.my_awesome_manipulator" class="Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator">
+        <tag name="ashleydawson.glide.manipulators" />
+    </service>
+</services>
 ```
 
 Ok, now we can use this manipulator on an image:
