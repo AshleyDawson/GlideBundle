@@ -25,7 +25,7 @@ class Server extends GlideServer
      * use League\Flysystem\FilesystemInterface;
      *
      * $server->setCachePathFilter(function ($path, Request $request, FilesystemInterface $cache) {
-     *     return '/my/custom/path' . $path;
+     *     return '/my/custom/location' . $path;
      * });
      * </code>
      *
