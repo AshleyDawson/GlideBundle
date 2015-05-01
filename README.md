@@ -3,6 +3,8 @@ Glide Bundle
 
 [![Build Status](https://travis-ci.org/AshleyDawson/GlideBundle.svg)](https://travis-ci.org/AshleyDawson/GlideBundle)
 
+[![knpbundles.com](http://knpbundles.com/AshleyDawson/GlideBundle/badge-short)](http://knpbundles.com/AshleyDawson/GlideBundle)
+
 Add [Glide](http://glide.thephpleague.com/) HTTP image processing library to Symfony 2 projects.
 
 Introduction
