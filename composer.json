@@ -2,6 +2,7 @@
   "name": "ashleydawson/glide-bundle",
   "type": "symfony-bundle",
   "description": "Glide image processing in a Symfony2 project",
+  "license": "MIT",
   "keywords": [
     "glide",
     "image",
