@@ -2,6 +2,7 @@
 
 namespace AshleyDawson\GlideBundle\Server;
 
+use League\Glide\Http\RequestArgumentsResolver;
 use League\Glide\Server as GlideServer;
 
 /**
@@ -41,7 +42,7 @@ class Server extends GlideServer
      */
     public function getCachePath()
     {
-        $request = $this->resolveRequestObject(func_get_args());
+        $request = (new RequestArgumentsResolver())->getRequest(func_get_args());
 
         $path = md5($this->getSourcePath($request).'?'.http_build_query($request->query->all()));
 
