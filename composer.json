@@ -24,7 +24,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "symfony/symfony": "~2.3",
+    "symfony/symfony": "~2.3|~3.0",
     "league/flysystem": "~1.0",
     "league/glide": "0.3.*"
   },
