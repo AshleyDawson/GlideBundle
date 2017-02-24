@@ -3,3 +3,4 @@
 vendor
 bin
 phpunit.xml
+composer.lock

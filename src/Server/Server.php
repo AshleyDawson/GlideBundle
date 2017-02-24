@@ -2,8 +2,8 @@
 
 namespace AshleyDawson\GlideBundle\Server;
 
-use League\Glide\Http\RequestArgumentsResolver;
 use League\Glide\Server as GlideServer;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Server
@@ -40,11 +40,13 @@ class Server extends GlideServer
     /**
      * {@inheritdoc}
      */
-    public function getCachePath()
+    public function getCachePath($path = null, array $params = [])
     {
-        $request = (new RequestArgumentsResolver())->getRequest(func_get_args());
+        $request = Request::createFromGlobals();
 
-        $path = md5($this->getSourcePath($request).'?'.http_build_query($request->query->all()));
+        if (!$path) {
+            $path = md5($this->getSourcePath($request).'?'.http_build_query($request->query->all()));
+        }
 
         if ($this->_cachePathFilter instanceof \Closure) {
             $filter = $this->_cachePathFilter;
