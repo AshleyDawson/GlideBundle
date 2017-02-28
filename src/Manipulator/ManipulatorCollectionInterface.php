@@ -2,7 +2,7 @@
 
 namespace AshleyDawson\GlideBundle\Manipulator;
 
-use League\Glide\Api\Manipulator\ManipulatorInterface;
+use League\Glide\Manipulators\ManipulatorInterface;
 
 /**
  * Interface ManipulatorCollectionInterface

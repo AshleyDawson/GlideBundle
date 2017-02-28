@@ -3,7 +3,7 @@
 namespace AshleyDawson\GlideBundle\Manipulator;
 
 use AshleyDawson\GlideBundle\Exception\ManipulatorAlreadyExistsInCollectionException;
-use League\Glide\Api\Manipulator\ManipulatorInterface;
+use League\Glide\Manipulators\ManipulatorInterface;
 
 /**
  * Class ManipulatorCollection

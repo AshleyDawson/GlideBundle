@@ -26,17 +26,15 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
             new ImageManager([
                 'driver' => 'gd',
             ]), [
-                new \League\Glide\Api\Manipulator\Orientation(),
-                new \League\Glide\Api\Manipulator\Rectangle(),
-                new \League\Glide\Api\Manipulator\Size(2000*2000),
-                new \League\Glide\Api\Manipulator\Brightness(),
-                new \League\Glide\Api\Manipulator\Contrast(),
-                new \League\Glide\Api\Manipulator\Gamma(),
-                new \League\Glide\Api\Manipulator\Sharpen(),
-                new \League\Glide\Api\Manipulator\Filter(),
-                new \League\Glide\Api\Manipulator\Blur(),
-                new \League\Glide\Api\Manipulator\Pixelate(),
-                new \League\Glide\Api\Manipulator\Output(),
+                new \League\Glide\Manipulators\Orientation(),
+                new \League\Glide\Manipulators\Size(2000*2000),
+                new \League\Glide\Manipulators\Brightness(),
+                new \League\Glide\Manipulators\Contrast(),
+                new \League\Glide\Manipulators\Gamma(),
+                new \League\Glide\Manipulators\Sharpen(),
+                new \League\Glide\Manipulators\Filter(),
+                new \League\Glide\Manipulators\Blur(),
+                new \League\Glide\Manipulators\Pixelate(),
             ]
         );
 
