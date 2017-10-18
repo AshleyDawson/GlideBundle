@@ -27,6 +27,7 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
                 'driver' => 'gd',
             ]), [
                 new \League\Glide\Manipulators\Orientation(),
+                new \League\Glide\Manipulators\Crop(),
                 new \League\Glide\Manipulators\Size(2000*2000),
                 new \League\Glide\Manipulators\Brightness(),
                 new \League\Glide\Manipulators\Contrast(),
@@ -35,6 +36,10 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
                 new \League\Glide\Manipulators\Filter(),
                 new \League\Glide\Manipulators\Blur(),
                 new \League\Glide\Manipulators\Pixelate(),
+                new \League\Glide\Manipulators\Watermark(),
+                new \League\Glide\Manipulators\Background(),
+                new \League\Glide\Manipulators\Border(),
+                new \League\Glide\Manipulators\Encode(),
             ]
         );
 
