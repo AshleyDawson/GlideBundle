@@ -59,7 +59,7 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testAddManipulatorAlreadyExists()
     {
-        $this->expectException('AshleyDawson\GlideBundle\Exception\ManipulatorAlreadyExistsInCollectionException');
+        $this->setExpectedException('AshleyDawson\GlideBundle\Exception\ManipulatorAlreadyExistsInCollectionException');
 
         $this->_manipulatorCollection->addManipulator(
             $this->buildMockManipulatorInterface('Mock_Manip')
@@ -72,7 +72,7 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
 
     private function buildMockManipulatorInterface($mockClassName = null) {
         return $this
-            ->getMockBuilder(ManipulatorInterface::class)
+            ->getMockBuilder('League\Glide\Manipulators\ManipulatorInterface')
             ->setMockClassName($mockClassName ? $mockClassName : $this->_buildRandomMockManipulatorClassName())
             ->getMock();
     }
