@@ -73,7 +73,7 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
     private function buildMockManipulatorInterface($mockClassName = null) {
         return $this
             ->getMockBuilder(ManipulatorInterface::class)
-            ->setMockClassName($mockClassName ?? $this->_buildRandomMockManipulatorClassName())
+            ->setMockClassName($mockClassName ? $mockClassName : $this->_buildRandomMockManipulatorClassName())
             ->getMock();
     }
 
