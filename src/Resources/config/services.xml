@@ -21,48 +21,60 @@
 
         <!-- Manipulators -->
 
-        <service id="ashleydawson.glide.manipulator.orientation" class="League\Glide\Api\Manipulator\Orientation">
+        <service id="ashleydawson.glide.manipulator.orientation" class="League\Glide\Manipulators\Orientation">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.rectangle" class="League\Glide\Api\Manipulator\Rectangle">
+        <service id="ashleydawson.glide.manipulator.crop" class="League\Glide\Manipulators\Crop">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.size" class="League\Glide\Api\Manipulator\Size">
+        <service id="ashleydawson.glide.manipulator.size" class="League\Glide\Manipulators\Size">
             <argument>%ashleydawson.glide.max_image_size%</argument>
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.brightness" class="League\Glide\Api\Manipulator\Brightness">
+        <service id="ashleydawson.glide.manipulator.brightness" class="League\Glide\Manipulators\Brightness">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.contrast" class="League\Glide\Api\Manipulator\Contrast">
+        <service id="ashleydawson.glide.manipulator.contrast" class="League\Glide\Manipulators\Contrast">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.gamma" class="League\Glide\Api\Manipulator\Gamma">
+        <service id="ashleydawson.glide.manipulator.gamma" class="League\Glide\Manipulators\Gamma">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.sharpen" class="League\Glide\Api\Manipulator\Sharpen">
+        <service id="ashleydawson.glide.manipulator.sharpen" class="League\Glide\Manipulators\Sharpen">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.filter" class="League\Glide\Api\Manipulator\Filter">
+        <service id="ashleydawson.glide.manipulator.filter" class="League\Glide\Manipulators\Filter">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.blur" class="League\Glide\Api\Manipulator\Blur">
+        <service id="ashleydawson.glide.manipulator.blur" class="League\Glide\Manipulators\Blur">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.pixelate" class="League\Glide\Api\Manipulator\Pixelate">
+        <service id="ashleydawson.glide.manipulator.pixelate" class="League\Glide\Manipulators\Pixelate">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
-        <service id="ashleydawson.glide.manipulator.output" class="League\Glide\Api\Manipulator\Output">
+        <service id="ashleydawson.glide.manipulator.watermark" class="League\Glide\Manipulators\Watermark">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.background" class="League\Glide\Manipulators\Background">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.border" class="League\Glide\Manipulators\Border">
+            <tag name="ashleydawson.glide.manipulators" />
+        </service>
+
+        <service id="ashleydawson.glide.manipulator.encode" class="League\Glide\Manipulators\Encode">
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 

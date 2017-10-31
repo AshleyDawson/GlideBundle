@@ -3,6 +3,7 @@
 namespace AshleyDawson\GlideBundle\Tests\Manipulator;
 
 use AshleyDawson\GlideBundle\Manipulator\ManipulatorCollection;
+use League\Glide\Manipulators\ManipulatorInterface;
 
 /**
  * Class ManipulatorCollectionTest
@@ -29,7 +30,7 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
     public function testAddManipulator()
     {
         $this->_manipulatorCollection->addManipulator(
-            $this->getMock('League\Glide\Manipulators\ManipulatorInterface', [], [], $this->_buildRandomMockManipulatorClassName())
+            $this->buildMockManipulatorInterface()
         );
 
         $this->assertCount(1, $this->_manipulatorCollection->getManipulators());
@@ -40,13 +41,13 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $this->_manipulatorCollection->getManipulators());
 
         $this->_manipulatorCollection->addManipulator(
-            $this->getMock('League\Glide\Manipulators\ManipulatorInterface', [], [], $this->_buildRandomMockManipulatorClassName())
+            $this->buildMockManipulatorInterface()
         );
 
         $this->assertCount(1, $this->_manipulatorCollection->getManipulators());
 
         $this->_manipulatorCollection->addManipulator(
-            $this->getMock('League\Glide\Manipulators\ManipulatorInterface', [], [], $this->_buildRandomMockManipulatorClassName())
+            $this->buildMockManipulatorInterface()
         );
 
         $this->assertCount(2, $this->_manipulatorCollection->getManipulators());
@@ -61,12 +62,19 @@ class ManipulatorCollectionTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('AshleyDawson\GlideBundle\Exception\ManipulatorAlreadyExistsInCollectionException');
 
         $this->_manipulatorCollection->addManipulator(
-            $this->getMock('League\Glide\Manipulators\ManipulatorInterface', [], [], 'Mock_Manip')
+            $this->buildMockManipulatorInterface('Mock_Manip')
         );
 
         $this->_manipulatorCollection->addManipulator(
-            $this->getMock('League\Glide\Manipulators\ManipulatorInterface', [], [], 'Mock_Manip')
+            $this->buildMockManipulatorInterface('Mock_Manip')
         );
+    }
+
+    private function buildMockManipulatorInterface($mockClassName = null) {
+        return $this
+            ->getMockBuilder('League\Glide\Manipulators\ManipulatorInterface')
+            ->setMockClassName($mockClassName ? $mockClassName : $this->_buildRandomMockManipulatorClassName())
+            ->getMock();
     }
 
     private function _buildRandomMockManipulatorClassName()
