@@ -80,7 +80,7 @@ class MyController extends Controller
         ;
         
         // Return the processed image response
-        return $glideServer->getImageResponse($request->get('image_name'), $request);
+        return $glideServer->getImageResponse($request->get('image_name'), $request->query->all());
     }
 }
 ```
