@@ -95,7 +95,7 @@
 
         <!-- Server Factory -->
 
-        <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%">
+        <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%" public="true">
             <argument type="service" id="ashleydawson.glide.api" />
         </service>
 
