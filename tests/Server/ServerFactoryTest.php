@@ -4,8 +4,8 @@ namespace AshleyDawson\GlideBundle\Tests\Server;
 
 use AshleyDawson\GlideBundle\Server\ServerFactory;
 use Intervention\Image\ImageManager;
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use League\Glide\Api\Api;
 use PHPUnit\Framework\TestCase;
 
@@ -59,6 +59,6 @@ class ServerFactoryTest extends TestCase
 
     private function _getLocalFilesystem($prefix = ''): Filesystem
     {
-        return new Filesystem(new Local(TESTS_TMP_DIR . $prefix));
+        return new Filesystem(new LocalFilesystemAdapter(TESTS_TMP_DIR . $prefix));
     }
 }

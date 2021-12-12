@@ -2,7 +2,7 @@
 
 namespace AshleyDawson\GlideBundle\Server;
 
-use League\Flysystem\FilesystemInterface;
+use League\Flysystem\FilesystemOperator;
 
 /**
  * Interface ServerFactoryInterface
@@ -14,9 +14,9 @@ interface ServerFactoryInterface
     /**
      * Create a Glide server with source and cache filesystems
      *
-     * @param FilesystemInterface $source
-     * @param FilesystemInterface $cache
+     * @param FilesystemOperator $source
+     * @param FilesystemOperator $cache
      * @return \AshleyDawson\GlideBundle\Server\Server;
      */
-    public function create(FilesystemInterface $source, FilesystemInterface $cache);
+    public function create(FilesystemOperator $source, FilesystemOperator $cache);
 }
