@@ -18,5 +18,5 @@ interface ServerFactoryInterface
      * @param FilesystemOperator $cache
      * @return \AshleyDawson\GlideBundle\Server\Server;
      */
-    public function create(FilesystemOperator $source, FilesystemOperator $cache);
+    public function create(FilesystemOperator $source, FilesystemOperator $cache): Server;
 }

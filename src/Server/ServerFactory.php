@@ -31,7 +31,7 @@ class ServerFactory implements ServerFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create(FilesystemOperator $source, FilesystemOperator $cache)
+    public function create(FilesystemOperator $source, FilesystemOperator $cache): Server
     {
         $server = new Server($source, $cache, $this->_api);
         $server->setResponseFactory(new SymfonyResponseFactory());

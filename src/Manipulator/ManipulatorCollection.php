@@ -20,7 +20,7 @@ class ManipulatorCollection implements ManipulatorCollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function addManipulator(ManipulatorInterface $manipulator)
+    public function addManipulator(ManipulatorInterface $manipulator): void
     {
         $class = get_class($manipulator);
 
@@ -35,7 +35,7 @@ class ManipulatorCollection implements ManipulatorCollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function getManipulators()
+    public function getManipulators(): array
     {
         return $this->_manipulators;
     }
