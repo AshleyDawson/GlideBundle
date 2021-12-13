@@ -25,13 +25,13 @@ class AshleyDawsonGlideExtension extends Extension
 
         $config = $processor->processConfiguration($configuration, $config);
 
-        $container->setParameter('ashleydawson.glide.max_image_size',
-            $config['max_image_size']);
-
-        $container->setParameter('ashleydawson.glide.image_manager_driver',
-            $config['image_manager_driver']);
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->getDefinition('ashleydawson.glide.manipulator.size')
+            ->setArgument('$maxImageSize', $config['max_image_size']);
+
+        $container->getDefinition('ashleydawson.glide.image_manager')
+            ->setArgument('$config', ['driver' => $config['image_manager_driver']]);
     }
 }
