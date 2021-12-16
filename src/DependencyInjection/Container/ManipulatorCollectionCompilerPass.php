@@ -2,8 +2,8 @@
 
 namespace AshleyDawson\GlideBundle\DependencyInjection\Container;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
@@ -16,7 +16,7 @@ class ManipulatorCollectionCompilerPass implements CompilerPassInterface
     /**
      * {@inheritdoc}
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if ( ! $container->has('ashleydawson.glide.manipulator_collection')) {
             return;

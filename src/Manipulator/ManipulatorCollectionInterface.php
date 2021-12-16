@@ -18,12 +18,12 @@ interface ManipulatorCollectionInterface
      * @return void
      * @throws \AshleyDawson\GlideBundle\Exception\ManipulatorAlreadyExistsInCollectionException
      */
-    public function addManipulator(ManipulatorInterface $manipulator);
+    public function addManipulator(ManipulatorInterface $manipulator): void;
 
     /**
      * Get the collection of manipulators as an array
      *
      * @return ManipulatorInterface[]
      */
-    public function getManipulators();
+    public function getManipulators(): array;
 }

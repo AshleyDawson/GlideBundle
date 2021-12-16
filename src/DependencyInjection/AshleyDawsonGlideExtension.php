@@ -2,11 +2,11 @@
 
 namespace AshleyDawson\GlideBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
 
 /**
  * Class AshleyDawsonGlideExtension
@@ -18,20 +18,20 @@ class AshleyDawsonGlideExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $processor = new Processor();
 
         $config = $processor->processConfiguration($configuration, $config);
 
-        $container->setParameter('ashleydawson.glide.max_image_size',
-            $config['max_image_size']);
-
-        $container->setParameter('ashleydawson.glide.image_manager_driver',
-            $config['image_manager_driver']);
-
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->getDefinition('ashleydawson.glide.manipulator.size')
+            ->setArgument('$maxImageSize', $config['max_image_size']);
+
+        $container->getDefinition('ashleydawson.glide.image_manager')
+            ->setArgument('$config', ['driver' => $config['image_manager_driver']]);
     }
 }

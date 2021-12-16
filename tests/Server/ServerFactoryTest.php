@@ -4,23 +4,24 @@ namespace AshleyDawson\GlideBundle\Tests\Server;
 
 use AshleyDawson\GlideBundle\Server\ServerFactory;
 use Intervention\Image\ImageManager;
-use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use League\Glide\Api\Api;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ServerFactoryTest
  *
  * @package AshleyDawson\GlideBundle\Tests\Server
  */
-class ServerFactoryTest extends \PHPUnit_Framework_TestCase
+class ServerFactoryTest extends TestCase
 {
     /**
      * @var ServerFactory
      */
     private $_serverFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $api = new Api(
             new ImageManager([
@@ -46,7 +47,7 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
         $this->_serverFactory = new ServerFactory($api);
     }
 
-    public function testCreateServer()
+    public function testCreateServer(): void
     {
         $source = $this->_getLocalFilesystem('/source');
         $cache = $this->_getLocalFilesystem('/cache');
@@ -56,8 +57,8 @@ class ServerFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('League\Glide\Server', $server);
     }
 
-    private function _getLocalFilesystem($prefix = '')
+    private function _getLocalFilesystem($prefix = ''): Filesystem
     {
-        return new Filesystem(new Local(TESTS_TMP_DIR . $prefix));
+        return new Filesystem(new LocalFilesystemAdapter(TESTS_TMP_DIR . $prefix));
     }
 }

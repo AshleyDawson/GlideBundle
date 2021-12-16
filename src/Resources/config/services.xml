@@ -4,20 +4,11 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-
-        <parameter key="ashleydawson.glide.manipulator_collection.class">AshleyDawson\GlideBundle\Manipulator\ManipulatorCollection</parameter>
-        <parameter key="ashleydawson.glide.image_manager.class">Intervention\Image\ImageManager</parameter>
-        <parameter key="ashleydawson.glide.api.class">AshleyDawson\GlideBundle\Api\Api</parameter>
-        <parameter key="ashleydawson.glide.server_factory.class">AshleyDawson\GlideBundle\Server\ServerFactory</parameter>
-
-    </parameters>
-
     <services>
 
         <!-- Manipulator Collection -->
 
-        <service id="ashleydawson.glide.manipulator_collection" class="%ashleydawson.glide.manipulator_collection.class%" />
+        <service id="ashleydawson.glide.manipulator_collection" class="AshleyDawson\GlideBundle\Manipulator\ManipulatorCollection" />
 
         <!-- Manipulators -->
 
@@ -30,7 +21,6 @@
         </service>
 
         <service id="ashleydawson.glide.manipulator.size" class="League\Glide\Manipulators\Size">
-            <argument>%ashleydawson.glide.max_image_size%</argument>
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
@@ -63,6 +53,7 @@
         </service>
 
         <service id="ashleydawson.glide.manipulator.watermark" class="League\Glide\Manipulators\Watermark">
+            <argument key="$watermarks" type="service" id="ashleydawson.glide.filesystem.watermark" on-invalid="null"/>
             <tag name="ashleydawson.glide.manipulators" />
         </service>
 
@@ -80,23 +71,21 @@
 
         <!-- Image Manager -->
 
-        <service id="ashleydawson.glide.image_manager" class="%ashleydawson.glide.image_manager.class%">
-            <argument type="collection">
-                <argument key="driver" type="string">%ashleydawson.glide.image_manager_driver%</argument>
-            </argument>
+        <service id="ashleydawson.glide.image_manager" class="Intervention\Image\ImageManager">
+            <argument type="collection"/>
         </service>
 
         <!-- API -->
 
-        <service id="ashleydawson.glide.api" class="%ashleydawson.glide.api.class%">
+        <service id="AshleyDawson\GlideBundle\Api\Api">
             <argument type="service" id="ashleydawson.glide.image_manager" />
             <argument type="service" id="ashleydawson.glide.manipulator_collection" />
         </service>
 
         <!-- Server Factory -->
 
-        <service id="ashleydawson.glide.server_factory" class="%ashleydawson.glide.server_factory.class%" public="true">
-            <argument type="service" id="ashleydawson.glide.api" />
+        <service id="AshleyDawson\GlideBundle\Server\ServerFactory" public="true">
+            <argument type="service" id="AshleyDawson\GlideBundle\Api\Api" />
         </service>
 
     </services>

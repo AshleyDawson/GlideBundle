@@ -17,7 +17,7 @@ class AshleyDawsonGlideBundleTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasService('ashleydawson.glide.server_factory');
+        $this->assertContainerBuilderHasService('AshleyDawson\GlideBundle\Server\ServerFactory');
     }
 
     /**
@@ -26,7 +26,7 @@ class AshleyDawsonGlideBundleTest extends AbstractExtensionTestCase
      *
      * @return ExtensionInterface[]
      */
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new AshleyDawsonGlideExtension(),

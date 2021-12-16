@@ -2,7 +2,7 @@
 
 namespace AshleyDawson\GlideBundle\Server;
 
-use League\Flysystem\FilesystemInterface;
+use League\Flysystem\FilesystemOperator;
 use League\Glide\Api\ApiInterface;
 use League\Glide\Responses\SymfonyResponseFactory;
 
@@ -31,7 +31,7 @@ class ServerFactory implements ServerFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create(FilesystemInterface $source, FilesystemInterface $cache)
+    public function create(FilesystemOperator $source, FilesystemOperator $cache): Server
     {
         $server = new Server($source, $cache, $this->_api);
         $server->setResponseFactory(new SymfonyResponseFactory());

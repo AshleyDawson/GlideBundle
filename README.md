@@ -3,7 +3,7 @@ Glide Bundle
 
 [![Build Status](https://travis-ci.org/AshleyDawson/GlideBundle.svg)](https://travis-ci.org/AshleyDawson/GlideBundle)
 
-Add [Glide](http://glide.thephpleague.com/) HTTP image processing library to Symfony 2 projects.
+Add [Glide](http://glide.thephpleague.com/) HTTP image processing library to Symfony projects.
 
 Introduction
 ------------
@@ -20,29 +20,45 @@ interface allowing you to embed images within your application. For example:
 
 For more information and a better explanation, please read the [official Glide docs](http://glide.thephpleague.com/).
 
-This bundle incorporates all aspects of the Glide library within the Symfony 2 service container - adding features and helpers
-relative to working with the Glide library within Symfony 2 projects.
+This bundle incorporates all aspects of the Glide library within the Symfony service container - adding features and helpers
+relative to working with the Glide library within Symfony projects.
 
 Installation
 ------------
 
-You can install the Glide Bundle via Composer. To do that, simply require the package in your composer.json file like so:
+Make sure Composer is installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
+of the Composer documentation.
 
-```json
-{
-    "require": {
-        "ashleydawson/glide-bundle": "~1.0"
-    }
-}
+### Applications that use Symfony Flex
+
+Open a command console, enter your project directory and execute:
+
+```console
+$ composer require ashleydawson/glide-bundle
 ```
 
-Run composer update to install the package. Then you'll need to register the bundle in your `app/AppKernel.php`:
+### Applications that don't use Symfony Flex
+
+#### Step 1: Download the Bundle
+
+Open a command console, enter your project directory and execute the following command to download the latest stable
+version of this bundle:
+
+```console
+$ composer require ashleydawson/glide-bundle
+```
+
+#### Step 2: Enable the Bundle
+
+Then, enable the bundle by adding it to the list of registered bundles  in the `config/bundles.php` file of your project:
 
 ```php
-$bundles = array(
+// config/bundles.php
+
+return [
     // ...
-    new AshleyDawson\GlideBundle\AshleyDawsonGlideBundle(),
-);
+    AshleyDawson\GlideBundle\AshleyDawsonGlideBundle::class => ['all' => true],
+];
 ```
 
 Basic Usage
@@ -55,27 +71,25 @@ The most simple example is actually using the glide server to process an image w
 
 namespace Acme\AcmeBundle\Controller;
 
+use AshleyDawson\GlideBundle\Server\ServerFactory;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
 
 class MyController extends Controller
 {
     /**
      * @Route("/images/{image_name}.jpg")
      */
-    public function showImageAction(Request $request)
+    public function showImageAction(Request $request, ServerFactory $serverFactory)
     {
         // Filesystems for source and cache
-        $sourceFilesystem = new Filesystem(new Local('/path/to/source/dir'));
-        $cacheFilesystem = new Filesystem(new Local('/path/to/cache/dir'));
+        $sourceFilesystem = new Filesystem(new LocalFilesystemAdapter('/path/to/source/dir'));
+        $cacheFilesystem = new Filesystem(new LocalFilesystemAdapter('/path/to/cache/dir'));
     
         // Create a Glide server
-        $glideServer = $this
-            ->get('ashleydawson.glide.server_factory')
-            ->create($sourceFilesystem, $cacheFilesystem)
-        ;
+        $glideServer = $serverFactory->create($sourceFilesystem, $cacheFilesystem);
         
         // Return the processed image response
         return $glideServer->getImageResponse($request->get('image_name'), $request->query->all());
@@ -87,7 +101,7 @@ The example above will create a glide server using a local filesystem for the so
 then returns an image response built using the image name (in source filesystem) and request containing the manipulation
 parameters.
 
-**Note:** You may want to point the cache filesystem at the Symfony cache, `app/cache`.
+**Note:** You may want to point the cache filesystem at the Symfony cache, `var/cache`.
 
 Custom Manipulators
 -------------------
@@ -96,7 +110,7 @@ Manipulators are services that transform an image in some way. There is a librar
 that provide transformations for size, effects, output, etc.
 
 If you'd like to register your own custom manipulator, simply create one and tag it into the manipulator collection within
-the Symfony 2 service container. Like so:
+the Symfony service container. Like so:
 
 ```php
 <?php
@@ -131,8 +145,7 @@ In YAML:
 
 services:
 
-    acme.glide.manipulator.my_awesome_manipulator:
-        class: Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator
+    Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator:
         tags:
             - { name: ashleydawson.glide.manipulators }
 
@@ -142,7 +155,7 @@ Or, in XML:
 
 ```xml
 <services>
-    <service id="acme.glide.manipulator.my_awesome_manipulator" class="Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator">
+    <service id="Acme\AcmeBundle\Glide\Manipulator\MyAwesomeManipulator">
         <tag name="ashleydawson.glide.manipulators" />
     </service>
 </services>
